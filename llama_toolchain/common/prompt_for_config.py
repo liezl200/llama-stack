@@ -169,7 +169,7 @@ def prompt_for_config(
                 existing_value,
             )
         else:
-            prompt = f"Enter value for {field_name}"
+            prompt = f"[test hack] Enter value for {field_name}"
             if existing_value is not None:
                 prompt += f" (existing: {existing_value})"
             elif default_value is not None:
