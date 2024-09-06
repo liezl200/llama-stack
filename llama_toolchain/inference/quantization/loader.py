@@ -14,7 +14,6 @@ import torch
 
 from fairscale.nn.model_parallel.mappings import reduce_from_model_parallel_region
 from llama_models.llama3.api.model import Transformer, TransformerBlock
-from llama_toolchain.inference.api import QuantizationType
 
 from llama_toolchain.inference.api.config import (
     CheckpointQuantizationFormat,
@@ -49,10 +48,10 @@ def convert_to_quantized_model(
     config: MetaReferenceImplConfig,
     fp8_activation_scale_ub: Optional[float] = 1200.0,
 ) -> Transformer:
-    if config.quantization.type == QuantizationType.bf16.value:
+    if config.quantization.type == "bf16":
         return model
 
-    elif config.quantization.type != QuantizationType.fp8.value:
+    elif config.quantization.type != "fp8":
         raise ValueError("Only FP8 quantization is supported")
 
     from .fp8_impls import Fp8ScaledWeights, load_fp8, quantize_fp8

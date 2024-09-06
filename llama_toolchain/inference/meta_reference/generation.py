@@ -31,7 +31,6 @@ from llama_models.sku_list import resolve_model
 from termcolor import cprint
 
 from llama_toolchain.common.model_utils import model_local_dir
-from llama_toolchain.inference.api import QuantizationType
 
 from .config import MetaReferenceImplConfig
 
@@ -69,7 +68,7 @@ class Llama:
 
         if (
             config.quantization
-            and config.quantization.type == QuantizationType.fp8.value
+            and config.quantization.type == "fp8"
         ):
             from .quantization.loader import is_fbgemm_available
 
@@ -124,7 +123,7 @@ class Llama:
 
         fp8 = (
             config.quantization
-            and config.quantization.type == QuantizationType.fp8.value
+            and config.quantization.type == "fp8"
         )
 
         if fp8:

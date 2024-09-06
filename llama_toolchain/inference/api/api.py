@@ -20,26 +20,8 @@ class LogProbConfig(BaseModel):
     top_k: Optional[int] = 0
 
 
-@json_schema_type
-class QuantizationType(Enum):
-    bf16 = "bf16"
-    fp8 = "fp8"
-
-
-@json_schema_type
-class Fp8QuantizationConfig(BaseModel):
-    type: Literal[QuantizationType.fp8.value] = QuantizationType.fp8.value
-
-
-@json_schema_type
-class Bf16QuantizationConfig(BaseModel):
-    type: Literal[QuantizationType.bf16.value] = QuantizationType.bf16.value
-
-
-QuantizationConfig = Annotated[
-    Union[Bf16QuantizationConfig, Fp8QuantizationConfig],
-    Field(discriminator="type"),
-]
+class QuantizationConfig(BaseModel):
+    type: Literal["bf16", "fp8"]
 
 
 @json_schema_type
