@@ -21,8 +21,7 @@ class LogProbConfig(BaseModel):
 
 
 class QuantizationConfig(BaseModel):
-    type: Literal["bf16", "fp8"]
-
+    type: Literal["bf16", "fp8"] = "bf16"
 
 @json_schema_type
 class ChatCompletionResponseEventType(Enum):
